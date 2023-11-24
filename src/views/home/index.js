@@ -23,7 +23,7 @@ function HeaderMenuComponent({ navigation }) {
         Header
       </Text>
       <TouchableOpacity
-        onPress={() => navigation.navigator}
+        onPress={() => navigation.navigate("UsuarioScreen")}
         style={styles.AccountButton}
       >
         <View
