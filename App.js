@@ -8,6 +8,7 @@ import HomeScreen from "./src/views/home/index";
 import RankingScreen from "./src/views/ranking/index";
 import TimeScreen from "./src/views/times/index";
 import EdicoeScreen from "./src/views/edicoes/index";
+import LoginScreen from "./src/views/login/index";
 
 const ButtonTab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "blue",
     alignItems: "center",
     justifyContent: "center",
   },
