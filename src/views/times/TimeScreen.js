@@ -45,16 +45,16 @@ function TimesList({ navigation }) {
 
   return (
     <View style={{ flex: 1, width: "75%" }}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            style={{ alignItems: "center" }}
-          />
-        }
-      >
-        <DataTable style={styles.table}>
+      <DataTable style={styles.table}>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              style={{ alignItems: "center" }}
+            />
+          }
+        >
           <DataTable.Header>
             <DataTable.Title style={styles.tableTitle}>
               <Text style={styles.white}>nome</Text>
@@ -78,8 +78,8 @@ function TimesList({ navigation }) {
           ) : (
             <Text>Carregando...</Text>
           )}
-        </DataTable>
-      </ScrollView>
+        </ScrollView>
+      </DataTable>
     </View>
   );
 }
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     height: "100%",
-    padding:15,
+    padding: 15,
   },
   table: {
     margin: 10,

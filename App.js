@@ -8,8 +8,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/views/home/index";
 import RankingScreen from "./src/views/ranking/index";
 import TimeScreen from "./src/views/times/index";
-import EdicoeScreen from "./src/views/edicoes/index";
-import LoginScreen from "./src/views/login/index";
 import UsuarioScreen from "./src/views/usuario";
 
 const ButtonTab = createBottomTabNavigator();
@@ -19,7 +17,7 @@ export default function App({ navigation }) {
   return (
     <NavigationContainer>
       <ButtonTab.Navigator
-        initialRouteName="Ranking"
+        initialRouteName="Home"
         styles={{ headerShown: false }}
         screenOptions={{
           tabBarActiveTintColor: "#fff",
