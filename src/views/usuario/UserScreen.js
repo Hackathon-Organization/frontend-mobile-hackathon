@@ -8,14 +8,15 @@ import participanteServices from "../../services/participante";
 export default function UsuarioScreen({ navigation }) {
   const [participantes, setParticipantes] = useState([]);
 
-  const fetchParticipantes = async () => {
-    const data = await participanteServices.getAllParticipantes();
-    setParticipantes(data);
-  };
-
   useEffect(() => {
-    fetchParticipantes();
+    participanteServices.getAllParticipantes().then((participantes) => {
+      setParticipantes(participantes[0]);
+    });
   }, []);
+
+  if (!participantes) {
+    return null;
+  }
 
   return (
     <LinearGradient
@@ -24,12 +25,23 @@ export default function UsuarioScreen({ navigation }) {
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
     >
-      <View>
-        <Text>{participantes.pontuacao}</Text>
-        <Text>{participantes.nome}</Text>
-        <Text>{participantes.email}</Text>
-        <Text>{participantes.equipe_atual}</Text>
-        <Text>ola</Text>
+      <View style={{ alignItems: "center" }}>
+        <View>
+          <Text style={{ color: "rgba(255,255,255,1)", fontSize: 30 }}>
+            {participantes.pontuacao}
+          </Text>
+        </View>
+        <View>
+          <Text style={{ color: "rgba(255,255,255,1)", margin: 10 }}>
+            {participantes.nome}
+          </Text>
+          <Text style={{ color: "rgba(255,255,255,1)", margin: 10 }}>
+            {participantes.email}
+          </Text>
+          <Text style={{ color: "rgba(255,255,255,1)", margin: 10 }}>
+            {participantes.equipe_atual}
+          </Text>
+        </View>
       </View>
     </LinearGradient>
   );
@@ -37,11 +49,10 @@ export default function UsuarioScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: "100%",
+    height: 1000,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
-    height: "100%",
   },
 });

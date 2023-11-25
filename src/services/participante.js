@@ -5,8 +5,8 @@ class ParticipanteServices {
     const response = await api.get("/participantes/");
     return response.data.results;
   }
-  async getParticipantesById(menbro) {
-    const response = await api.get(`/participantes/${menbro}`);
+  async getParticipantesById(membro) {
+    const response = await api.get(`/participantes/${membro}`);
     return response.data;
   }
 }
