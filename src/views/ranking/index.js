@@ -1,20 +1,19 @@
+import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 
-export default function RankingScreen() {
+import RankingScreen from "./RankingScreen";
+
+const Stack = createStackNavigator();
+
+export default function MainRanking({navigation}) {
   return (
-    <View style={styles.container}>
-      <Text>Ranking</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="RankingScreen"
+        component={RankingScreen}
+        navigation={navigation}
+      />
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

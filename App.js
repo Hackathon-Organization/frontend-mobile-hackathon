@@ -3,7 +3,7 @@ import "react-native-gesture-handler";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./src/views/home/index";
 import RankingScreen from "./src/views/ranking/index";
@@ -12,8 +12,8 @@ import EdicoeScreen from "./src/views/edicoes/index";
 import LoginScreen from "./src/views/login/index";
 import UsuarioScreen from "./src/views/usuario";
 
-const Stack = createStackNavigator();
 const ButtonTab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App({ navigation }) {
   return (
@@ -50,6 +50,12 @@ export default function App({ navigation }) {
           navigation={navigation}
         />
       </ButtonTab.Navigator>
+      <ButtonTab.Screen
+        options={{ headerShown: false }}
+        name="Usuario"
+        component={UsuarioScreen}
+        navigation={navigation}
+      />
     </NavigationContainer>
   );
 }

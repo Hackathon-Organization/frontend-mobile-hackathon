@@ -1,20 +1,19 @@
+import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 
-export default function TimesScreen() {
+import TimeScreen from "./TimeScreen";
+
+const Stack = createStackNavigator();
+
+export default function MainTimes({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Times</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="TimeScreen"
+        component={TimeScreen}
+        navigation={navigation}
+      />
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
