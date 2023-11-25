@@ -18,9 +18,24 @@ const Stack = createNativeStackNavigator();
 export default function App({ navigation }) {
   return (
     <NavigationContainer>
-      <ButtonTab.Navigator initialRouteName="Login">
+      <ButtonTab.Navigator
+        initialRouteName="Ranking"
+        styles={{ headerShown: false }}
+        screenOptions={{
+          tabBarActiveTintColor: "#fff",
+          tabBarActiveBackgroundColor: "rgba(1,32,48,1)",
+          tabBarInactiveTintColor: "rgba(255,255,255,1)",
+          tabBarInactiveBackgroundColor: "rgba(1,32,48,1)",
+          tabBarStyle: {
+            backgroundColor: "rgba(1,32,48,1)",
+            borderTopColor: "rgba(255,255,255,1)",
+            borderTopWidth: 1,
+            paddingTop: 10,
+          },
+        }}
+      >
         <ButtonTab.Screen
-          options={{ headerShown: false }}
+          options={{ headerShown: false, tabBarStyle: { display: "none" } }}
           name="Login"
           component={LoginScreen}
           navigation={navigation}
@@ -45,17 +60,11 @@ export default function App({ navigation }) {
         />
         <ButtonTab.Screen
           options={{ headerShown: false }}
-          name="Edições"
-          component={EdicoeScreen}
+          name="Usuario"
+          component={UsuarioScreen}
           navigation={navigation}
         />
       </ButtonTab.Navigator>
-      <ButtonTab.Screen
-        options={{ headerShown: false }}
-        name="Usuario"
-        component={UsuarioScreen}
-        navigation={navigation}
-      />
     </NavigationContainer>
   );
 }
