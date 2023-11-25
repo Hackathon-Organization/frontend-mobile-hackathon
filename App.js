@@ -35,12 +35,6 @@ export default function App({ navigation }) {
         }}
       >
         <ButtonTab.Screen
-          options={{ headerShown: false, tabBarStyle: { display: "none" } }}
-          name="Login"
-          component={LoginScreen}
-          navigation={navigation}
-        />
-        <ButtonTab.Screen
           options={{ headerShown: false }}
           name="Home"
           component={HomeScreen}
