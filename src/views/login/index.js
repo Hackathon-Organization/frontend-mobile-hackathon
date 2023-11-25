@@ -1,22 +1,19 @@
+import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-export default function LoginScreen() {
+import LoginScreen from "./LoginScreen";
+
+const Stack = createStackNavigator();
+
+export default function MainLogin({ navigation }) {
   return (
-    <View style={styles.container}>
-      <View style={styles.MainLoginContainer}>
-        <Text>LoginScreen</Text>
-      </View>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <Stack.Navigator>
+      <Stack.Screen 
+        options={{ headerShown: false }}
+        name="LoginScreen"
+        component={LoginScreen}
+        navigation={navigation}
+      />
+    </Stack.Navigator>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

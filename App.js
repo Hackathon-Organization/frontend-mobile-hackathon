@@ -3,7 +3,7 @@ import "react-native-gesture-handler";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./src/views/home/index";
 import RankingScreen from "./src/views/ranking/index";
@@ -12,19 +12,28 @@ import EdicoeScreen from "./src/views/edicoes/index";
 import LoginScreen from "./src/views/login/index";
 import UsuarioScreen from "./src/views/usuario";
 
-const Stack = createStackNavigator();
 const ButtonTab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App({ navigation }) {
   return (
     <NavigationContainer>
-      <ButtonTab.Navigator initialRouteName="Login">
-        <ButtonTab.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={LoginScreen}
-          navigation={navigation}
-        />
+      <ButtonTab.Navigator
+        initialRouteName="Ranking"
+        styles={{ headerShown: false }}
+        screenOptions={{
+          tabBarActiveTintColor: "#fff",
+          tabBarActiveBackgroundColor: "rgba(1,32,48,1)",
+          tabBarInactiveTintColor: "rgba(255,255,255,1)",
+          tabBarInactiveBackgroundColor: "rgba(1,32,48,1)",
+          tabBarStyle: {
+            backgroundColor: "rgba(1,32,48,1)",
+            borderTopColor: "rgba(255,255,255,1)",
+            borderTopWidth: 1,
+            paddingTop: 10,
+          },
+        }}
+      >
         <ButtonTab.Screen
           options={{ headerShown: false }}
           name="Home"
@@ -45,8 +54,8 @@ export default function App({ navigation }) {
         />
         <ButtonTab.Screen
           options={{ headerShown: false }}
-          name="Edições"
-          component={EdicoeScreen}
+          name="Usuario"
+          component={UsuarioScreen}
           navigation={navigation}
         />
       </ButtonTab.Navigator>
