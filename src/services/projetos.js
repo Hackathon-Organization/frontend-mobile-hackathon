@@ -7,7 +7,7 @@ class ProjetoServices {
   }
   async getProjetoById(projetoId) {
     const response = await api.get(`/projetos/${projetoId}`);
-    return response.data.results;
+    return response.data;
   }
 }
 

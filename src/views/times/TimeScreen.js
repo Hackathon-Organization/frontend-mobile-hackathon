@@ -1,17 +1,24 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState, useCallback } from "react";
 import { DataTable, Text } from "react-native-paper";
-import { ScrollView, StyleSheet, View, RefreshControl } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  RefreshControl,
+  TouchableOpacity,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import TimeServices from "../../services/times";
+import timeServices from "../../services/times";
+import projetoService from "../../services/projetos";
 
-function TimesList() {
+function TimesList({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
   const [times, setTimes] = useState([]);
 
   const fetchTimes = async () => {
-    const data = await TimeServices.getAllTimes();
+    const data = await timeServices.getAllTimes();
     setTimes(data);
   };
 
@@ -25,11 +32,26 @@ function TimesList() {
     fetchTimes();
   }, []);
 
+  const [projeto, setProjetos] = useState([]);
+
+  const fetchProjetos = async () => {
+    const data = await projetoService.getAllProjetos();
+    setProjetos(data);
+  };
+
+  useEffect(() => {
+    fetchProjetos();
+  }, []);
+
   return (
-    <View>
+    <View style={{ flex: 1, width: "75%" }}>
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            style={{ alignItems: "center" }}
+          />
         }
       >
         <DataTable style={styles.table}>
@@ -37,24 +59,20 @@ function TimesList() {
             <DataTable.Title style={styles.tableTitle}>
               <Text style={styles.white}>nome</Text>
             </DataTable.Title>
-            <DataTable.Title style={styles.tableTitle}>
-              <Text style={{ color: "rgba(255,255,255,1)", fontSize: 20 }}>
-                Projeto
-              </Text>
-            </DataTable.Title>
           </DataTable.Header>
 
           {Array.isArray(times) ? (
-            times.map((time) => (
+            times.map((time, projeto) => (
               <DataTable.Row key={time.id}>
-                <DataTable.Cell>
-                  <Text style={styles.white}>{time.nome}</Text>
-                </DataTable.Cell>
-                <DataTable.Cell>
-                  <Text style={{ color: "rgba(255,255,255,1)", fontSize: 20 }}>
-                    {time.projeto.name}
-                  </Text>
-                </DataTable.Cell>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("TimeDetail", { time: time.id })
+                  }
+                >
+                  <DataTable.Cell>
+                    <Text style={styles.white}>{time.nome}</Text>
+                  </DataTable.Cell>
+                </TouchableOpacity>
               </DataTable.Row>
             ))
           ) : (
@@ -74,7 +92,7 @@ export default function TimeScreen({ navigation }) {
       end={[1, 1]}
       style={styles.container}
     >
-      <TimesList />
+      <TimesList navigation={navigation} />
       <StatusBar style="auto" />
     </LinearGradient>
   );
@@ -88,18 +106,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     height: "100%",
-    padding: 10,
+    padding:15,
   },
   table: {
     margin: 10,
-    height: "auto",
-    width: 400,
+    height: "90%",
+    width: "100%",
     display: "flex",
+    alignContent: "center",
     backgroundColor: "#013956",
-    borderRadius: 10,
+    borderRadius: 20,
     color: "white",
   },
   tableTitle: {
+    width: "100%",
     color: "white",
     fontSize: 20,
     margin: 10,

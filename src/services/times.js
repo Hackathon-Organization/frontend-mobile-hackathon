@@ -5,8 +5,8 @@ class TimeServices {
     const response = await api.get("/equipes/");
     return response.data.results;
   }
-  GelTimeById(timeid) {
-    const response = api.get(`/equipes/${timeid}`);
+  async getTimeById(timeId) {
+    const response = await api.get(`/equipes/${timeId}`);
     return response.data;
   }
 }

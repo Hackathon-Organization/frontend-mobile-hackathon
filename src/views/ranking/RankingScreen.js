@@ -52,11 +52,11 @@ function ProjetosList({ navigation }) {
             </DataTable.Title>
             <DataTable.Title style={styles.tableTitle}>
               <Text style={{ color: "rgba(255,255,255,1)", fontSize: 20 }}>
-                Projeto
+                descrição
               </Text>
             </DataTable.Title>
             <DataTable.Title numeric style={styles.tableTitle}>
-              <Text style={styles.white}>Projeto</Text>
+              <Text style={styles.white}>Pontuação</Text>
             </DataTable.Title>
           </DataTable.Header>
 
@@ -65,7 +65,11 @@ function ProjetosList({ navigation }) {
               <DataTable.Row key={projeto.id}>
                 <DataTable.Cell>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate("ProjetoScreen", {projeto: projeto.id})}
+                    onPress={() =>
+                      navigation.navigate("ProjetoScreen", {
+                        projeto: projeto.id,
+                      })
+                    }
                   >
                     <Text style={styles.white}>{projeto.nome}</Text>
                   </TouchableOpacity>
